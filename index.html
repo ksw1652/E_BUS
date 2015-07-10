@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html ng-app = "globus">
+<head lang="en">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8" user-scalable=no>
+    <link rel="stylesheet" href="/lib/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/lib/css/all_style.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/lib/script/ngToast/ngToast.min.css"/>
+    <link href="/lib/css/angular-carousel.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="/lib/css/navbtn.css"/>
+    <link rel="stylesheet" href="/lib/css/callout.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="/lib/css/mobile-nav.css"/>
+    <link rel="stylesheet" href="/lib/css/checkbox.css"/>
+    <LINK REL="SHORTCUT ICON" HREF="/images/favicon.ico">
+    <title></title>
+</head>
+
+<body ng-clock ng-controller="MainCtrl">
+    <nav class="navbar navbar-default navbar-static-top " id="main_navtag" role="navigation">
+        <a class="navbar-brand" ng-tap="$navigate.go('/')">
+            &nbsp;
+            <i class="fa fa-bus fa-lg"></i>
+            &nbsp;
+            GLOBUS
+        </a>
+        <span class="btn-group pull-right">
+            <a class="navbar-brand" ng-tap="$navigate.go('/contactus')" id="index_config_btn">
+                <i class="fa fa-question-circle fa-lg"></i>
+            </a>
+        </span>
+    </nav>
+
+    <div class="btn-group btn-group-justified">
+        <a ng-tap="$navigate.go('/bookmark', 'slide', {{bookmark_value}})" class="btn nav-btn" ng-class="{curr_active:isActive('/bookmark', '/bookmark')}">즐겨찾기</a>
+        <a ng-tap="$navigate.go('/routesearch', 'slide', {{routesearch_value}})" class="btn nav-btn" ng-class="{curr_active:isActive('/routesearch', '/routesearch/routedetail')}">노선</a>
+        <a ng-tap="$navigate.go('/stationsearch', 'slide', {{stationsearch_value}})" class="btn nav-btn" ng-class="{curr_active:isActive('/stationsearch', '/stationsearch/stationdetail')}">정류소</a>
+        <a ng-tap="$navigate.go('/placesearch', 'slide', {{placesearch_value}})" class="btn nav-btn" ng-class="{curr_active:isActive('/placesearch', '/placesearch/placedetail')}">길찾기</a>
+    </div>
+
+
+    <!--<mobile-view></mobile-view>-->
+    <div ng-view></div>
+
+
+    <!-- jquery file link -->
+    <script src="/lib/script/jquery.min.js" ></script>
+
+    <!-- bootstrap file link -->
+    <script src="/lib/script/bootstrap.min.js" ></script>
+
+    <!-- angularjs file link-->
+    <script src="/lib/script/angular.min.js"></script>
+    <script src="/lib/script/angular-route.min.js"></script>
+
+    <!-- angular app.js file link  -->
+    <script src="/app.js"></script>
+
+    <!-- controller -->
+    <script src="/controller/bookmarkController.js"></script>
+    <script src="/controller/placesearchController.js" ></script>
+    <script src="/controller/placedetailController.js" ></script>
+    <script src="/controller/routesearchController.js" ></script>
+    <script src="/controller/routedetailController.js" ></script>
+    <script src="/controller/stationsearchController.js" ></script>
+    <script src="/controller/stationdetailController.js" ></script>
+    <script src="/controller/region_modalController.js" ></script>
+    <script src="/controller/contactusController.js" ></script>
+    <script src="/controller/contactusdetailController.js" ></script>
+    <script src="/controller/sendEmailController.js" ></script>
+    <script src="/controller/noticeController.js"></script>
+    <script src="/controller/mainController.js"></script>
+    <script src="/controller/removeModalCtrl.js"></script>
+    <script src="/controller/removeAppdataCtrl.js"></script>
+
+    <!-- directive -->
+    <script src="/directive/busDirective.js"></script>
+    <script src="/directive/ngtapDir.js"></script>
+    <script src="/directive/changeEntoKoDir.js"></script>
+
+    <!-- service -->
+    <script src="/service/placefactory.js" ></script>
+    <script src="/service/autocompletefactory.js"></script>
+    <script src="/service/routefactory.js"></script>
+    <script src="/service/stationfactory.js"></script>
+    <script src="/service/cleartimer.js"></script>
+    <script src="/service/mailServiceFactory.js"></script>
+    <script src="/service/regionfactory.js"></script>
+    <script src="/service/noticefactory.js"></script>
+    <script src="/service/contactusfactory.js"></script>
+    <script src="/service/navvaluefactory.js"></script>
+    <script src="/service/latilongfactory.js"></script>
+
+
+    <!--filter-->
+    <script src="/filter/search_reverse_filter.js"></script>
+    <script src="/filter/string_length_filter.js"></script>
+
+    <!-- google maps API V3 -->
+    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyD1QCx-pyUHyiUbvoWKcQxm7eA-cptiQxU&libraries=places&sensor=true"></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places&sensor=true"></script>
+    <script src="/lib/script/ngMap/ng-map.min.js"></script>
+    <script src="/lib/script/ngMap/navigator_geolocation.js"></script>
+    <script src="/lib/script/ngMap/directions.js"></script>
+<!--    <script src="/lib/script/ngMap/geo_coder.js"></script>-->
+
+    <!--<script src="/lib/script/ngMap/directions.js"></script>
+    <script src="/lib/script/ngMap/navigator_geolocation.js"></script>
+    <script src="/lib/script/ngMap/geo_coder.js"></script>
+    <script src="/lib/script/ngMap/attr2_options.js"></script>
+    <script src="/lib/script/ngMap/map_controller.js"></script>
+
+
+
+    <!-- angular-google-place-autocomplete file link -->
+    <script src="/lib/script/ngAutocomplete.js"></script>
+
+    <!--ngStorage-->
+    <script src="/lib/script/ngStorage.js"></script>
+
+    <!--modal-->
+    <script src="/lib/script/ui-bootstrap-tpls-0.13.0.min.js"></script>
+
+    <!--ngToast-->
+    <script src="/lib/script/ngToast/angular-animate.min.js"></script>
+    <script src="/lib/script/ngToast/angular-sanitize.min.js"></script>
+    <script src="/lib/script/ngToast/ngToast.min.js"></script>
+    <script src="/lib/script/ngToast/ngToastProvider.js"></script>
+
+    <!--spinner-->
+    <script src="/lib/script/spin.js"></script>
+    <script src="/lib/script/angular-spinner.js"></script>
+
+    <!--angular-carousel-->
+    <script src="/lib/script/angular-touch.js"></script>
+    <script src="/lib/script/angular-carousel.js"></script>
+
+    <script src="/lib/script/mobile-nav.js"></script>
+
+    <!--bindonce.js-->
+    <script src="/lib/script/bindonce.js"></script>
+
+    <!--ng-infinite-scroll-->
+    <script src="/lib/script/ng-infinite-scroll.js"></script>
+
+</body>
+</html>
